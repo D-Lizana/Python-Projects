@@ -19,7 +19,31 @@ def crear_carpetas(carpetas_destino, carpeta_otros):
     if not os.path.exists(carpeta_otros):
         os.makedirs(carpeta_otros)
 
+# Now we define the function that will move the files to the folders previously created
+def mover_archivos(ruta_descargas, carpetas_destino, carpeta_otros):
+        
+    # Chech each file in the download folder
+    for archivo in os.listdir(ruta_descargas):
+        archivo_ruta = os.path.join(ruta_descargas, archivo)
 
+        # If its a folder, continue
+        if os.path.isdir(archivo_ruta):
+            continue
+
+        # Split the name of the file to get the extension
+        name, extension = os.path.splitext(archivo)
+
+        # Now checks the extensions, if its defined they are sent to the proper folder
+        movido = False
+        for extensiones, carpeta in carpetas_destino.items():
+            if extension.lower() in extensiones:
+                shutil.move(archivo_ruta, os.path.join(carpeta, archivo))
+                movido = True
+                break
+
+        # if the extension is not defined, the file is moved to  "others"
+        if not movido:
+            shutil.move(archivo_ruta, os.path.join(carpeta_otros, archivo))
 
 
 def main():
@@ -38,6 +62,8 @@ def main():
 
     # Call the function we defined and use our routes as atributes
     crear_carpetas(carpetas_destino, carpeta_otros)
+    mover_archivos(ruta_descargas, carpetas_destino, carpeta_otros)
+
     print("Organización completada.")
 
 
