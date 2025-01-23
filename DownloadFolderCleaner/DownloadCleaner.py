@@ -7,7 +7,17 @@ import shutil
 # Will decide where to move each file depending on the extension
 
 # Define the function that will check if the folders exist and move the files to them
-def organizar_descargas():
+def organizar_descargas(ruta_descargas, carpetas_destino, carpeta_otros):
+
+    # First we check if the folders exist. If they dont we create them
+    for carpeta in carpetas_destino.values():
+        if not os.path.exists(carpeta):
+            os.makedirs(carpeta)
+
+    # Now we do the same with the "others" folder (for unknown extensions)
+
+    if not os.path.exists(carpeta_otros):
+        os.makedirs(carpeta_otros)
 
 
 def main():
