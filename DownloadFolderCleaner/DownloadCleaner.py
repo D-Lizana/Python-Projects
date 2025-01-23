@@ -5,6 +5,11 @@ import shutil
 
 # Define main and add the routes for our different folders
 # Will decide where to move each file depending on the extension
+
+# Define the function that will check if the folders exist and move the files to them
+def organizar_descargas():
+
+
 def main():
     # 
     ruta_descargas = "C:/Users/Diego/Downloads"  # Route to download folder (The one we want to clean and organize)
@@ -18,6 +23,11 @@ def main():
     } # We specify which files we will move to each folder
 
     carpeta_otros = "F:/DESCARGAS/otros"  # All the files with non-specified extensions will go to this folder
+
+    # Call the function we defined and use our routes as atributes
+    organizar_descargas(ruta_descargas, carpetas_destino, carpeta_otros)
+    print("Organización completada.")
+
 
 # Call main to run the program
 if __name__ == "__main__":
