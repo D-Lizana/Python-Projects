@@ -1,0 +1,4 @@
+requests
+rich # para representacion de datos en consola
+selenium
+webdriver-manager
